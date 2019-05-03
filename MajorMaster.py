@@ -32,7 +32,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.author.id == 180833059778723842:  # Replace with owner or admin ID
+    if message.author.id == 99999999999:  # Replace with owner or admin ID
         server = message.guild
         masterlistObject = server.roles
         verifier = []
@@ -66,7 +66,7 @@ async def on_message(message):
             if "ue" not in verifier:
                 await server.create_role(name="UE", mentionable=True, colour=discord.colour.Color.magenta())
             await sayChannel.send("All roles ready for use")
-    if message.channel.id == 573678127042134016 and message.author != client.user:  # Replace with role add channel ID
+    if message.channel.id == 999999999999999 and message.author != client.user:  # Replace with role add channel ID
         sayChannel = message.channel
         statement = message.content.strip().split()
         command = statement[0]
@@ -314,4 +314,4 @@ async def on_message(message):
             await sayChannel.send("This operation can not be performed")
 
 
-client.run('NDgyNzAwNDc1NjUzNjg1MjQ4.XMtVeA.Wxd15H8N60fczMnUzSOCSdpmt9g')
+client.run('99999999999999') #replace with API key
