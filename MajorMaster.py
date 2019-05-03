@@ -41,30 +41,21 @@ async def on_message(message):
         if message.content.strip() == "createAlltheRoles":
             sayChannel = message.channel
             await sayChannel.send("Creating all missing roles...")
-            if "cad" not in verifier:
-                await server.create_role(name="CAD", mentionable=False, colour=discord.colour.Color.teal())
-            if "scob" not in verifier:
-                await server.create_role(name="SCOB", mentionable=False, colour=discord.colour.Color.purple())
-            if "gccis" not in verifier:
-                await server.create_role(name="GCCIS", mentionable=False, colour=discord.colour.Color.blue())
-            if "kgcoe" not in verifier:
-                await server.create_role(name="KGCOE", mentionable=False, colour=discord.colour.Color.red())
-            if "cet" not in verifier:
-                await server.create_role(name="CET", mentionable=False, colour=discord.colour.Color.dark_blue())
-            if "chst" not in verifier:
-                await server.create_role(name="CHST", mentionable=False, colour=discord.colour.Color.dark_purple())
-            if "cola" not in verifier:
-                await server.create_role(name="COLA", mentionable=False, colour=discord.colour.Color.gold())
-            if "cos" not in verifier:
-                await server.create_role(name="COS", mentionable=False, colour=discord.colour.Color.dark_magenta())
-            if "ntid" not in verifier:
-                await server.create_role(name="NTID", mentionable=False, colour=discord.colour.Color.green())
+
+            colleges = {'cad': discord.colour.Color.teal(), 'scob': discord.colour.Color.purple(), 'gccis': discord.colour.Color.blue(),
+                        'kgcoe': discord.colour.Color.red(), 'cet': discord.colour.Color.dark_blue(), 'chst': discord.colour.Color.dark_purple(),
+                        'cola': discord.colour.Color.gold(), 'cos': discord.colour.Color.dark_magenta(), 'ntid': discord.colour.Color.green(),
+                        'ue': discord.colour.Color.magenta()}
+            for college, color in colleges.items():
+                if college not in verifier:
+                    isUE = (college == 'ue')  # Only UE role is pingable. Will be false otherwise.
+                    await server.create_role(name=college.upper(), mentionable=isUE, colour=color)
+
             for item in OGlist:
                 for major in item:
                     if major.lower() not in verifier:
                         await server.create_role(name=major, mentionable=True)  # Set to false to remove @ing
-            if "ue" not in verifier:
-                await server.create_role(name="UE", mentionable=True, colour=discord.colour.Color.magenta())
+
             await sayChannel.send("All roles ready for use")
     if message.channel.id == 999999999999999 and message.author != client.user:  # Replace with role add channel ID
         sayChannel = message.channel
